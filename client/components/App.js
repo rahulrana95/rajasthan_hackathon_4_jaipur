@@ -17,7 +17,7 @@ class App extends React.Component {
           {this.props.loginReducer.status == values.LOGOUT ?null :    <div className="content">
             </div>}
           {this.props.loginReducer.status == values.LOGOUT ? <LoginSignUp /> :  null}
-
+        {this.props.children}  
       </div>
       </div>
     );
