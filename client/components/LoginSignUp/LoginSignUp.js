@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Login from './Login';
 import SignUp from './SignUp';
 class LoginSignUp extends React.Component {
@@ -24,4 +25,21 @@ class LoginSignUp extends React.Component {
     );
   }
 }
-export default LoginSignUp;
+
+
+const mapStateToProps = (state) => {
+  return {
+    loginReducer : state.loginReducer
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logOutUser : () => dispatch(logOutAction())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginSignUp);

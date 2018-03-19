@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router';
 import { Menu } from 'semantic-ui-react'
 
 class SideMenu extends Component {
@@ -10,30 +11,17 @@ class SideMenu extends Component {
     return (
       <Menu vertical fixed="top" className="sideMenu">
         <Menu.Item>
-          <Menu.Header>Products</Menu.Header>
+          <Menu.Header>Filters</Menu.Header>
 
           <Menu.Menu>
-            <Menu.Item name='enterprise' active={activeItem === 'enterprise'} onClick={this.handleItemClick} />
-            <Menu.Item name='consumer' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
-          </Menu.Menu>
-        </Menu.Item>
+            <Menu.Item name='Trending' active={activeItem === 'enterprise'} onClick={this.handleItemClick} />
+            <Menu.Item name='Solo Travel' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
+            <Menu.Item name='2_5 Persons Travelling' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
+            <Menu.Item name='Cold Places' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
+            <Menu.Item name='Hot Places' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
+            <Menu.Item name='Sonowy Places' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
+            <Menu.Item name='Warm Places' active={activeItem === 'consumer'} onClick={this.handleItemClick} />
 
-        <Menu.Item>
-          <Menu.Header>CMS Solutions</Menu.Header>
-
-          <Menu.Menu>
-            <Menu.Item name='rails' active={activeItem === 'rails'} onClick={this.handleItemClick} />
-            <Menu.Item name='python' active={activeItem === 'python'} onClick={this.handleItemClick} />
-            <Menu.Item name='php' active={activeItem === 'php'} onClick={this.handleItemClick} />
-          </Menu.Menu>
-        </Menu.Item>
-
-        <Menu.Item>
-          <Menu.Header>Hosting</Menu.Header>
-
-          <Menu.Menu>
-            <Menu.Item name='shared' active={activeItem === 'shared'} onClick={this.handleItemClick} />
-            <Menu.Item name='dedicated' active={activeItem === 'dedicated'} onClick={this.handleItemClick} />
           </Menu.Menu>
         </Menu.Item>
 

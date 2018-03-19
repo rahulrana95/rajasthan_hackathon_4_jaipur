@@ -1,16 +1,25 @@
 import express from 'express';
 import path from 'path';
 import webpack from 'webpack';
+import mongodb from 'mongodb';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import bodyParser from 'body-parser';
 import webpackConfigDev from '../webpack.config.dev.js';
 import webpackConfigProd from '../webpack.config.prod.js';
 import route from './routes/index.js';
+import config from '../configurations/config.js';
 
+var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
 let app = express();
 let compiler = {};
 let webpackConfig = {};
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 if(process.env.mode == 'PROD') {
 	compiler = webpack(webpackConfigProd);
 	webpackConfig = webpackConfigProd;
@@ -20,6 +29,15 @@ if(process.env.mode == 'PROD') {
 	webpackConfig = webpackConfigDev;
 	console.log('Running in development mode...');
 }
+
+
+MongoClient.connect(config.mongodb.host+':'+config.mongodb.port, function (err, database) {
+     if(err) throw err;
+     const mydb = database.db('hack');
+    app.set('db',mydb);
+});
+
+
 for (var x in route ){
 	app.use('/api',require(path.join(__dirname+'/routes/',route[x])));
 }

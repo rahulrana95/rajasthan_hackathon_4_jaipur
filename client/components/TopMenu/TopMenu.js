@@ -11,11 +11,9 @@ class TopMenu extends Component {
             }
 
   handleItemClick = (e, { name }) =>{
-
-    if(this.props.loginReducer.status == values.NOTLOGIN ){
-      this.props.toggleForm();
-    } else if(this.props.loginReducer.status == values.LOGIN ){
-      this.props.logOutUser();
+    console.log(name);
+    if(this.props.loginReducer.status == values.ALREADYLOGIN && name =='logOut' ){
+      this.props.logOut();
     }
 
      this.setState({ activeItem: name
@@ -32,7 +30,7 @@ class TopMenu extends Component {
         active={activeItem === 'editorials'}
         onClick={this.handleItemClick}
       >
-        Home
+      <Link to="/">  Home</Link>
       </Menu.Item>
 
       <Menu.Item
@@ -42,15 +40,19 @@ class TopMenu extends Component {
       >
         About Us
       </Menu.Item>
+      <Menu.Item
+        name='placesAudioGuides'
+        active={activeItem === 'placesAudioGuides'}
+        onClick={this.handleItemClick}
+      >
+        Places Guides
+      </Menu.Item>
       <Menu.Menu position='right'>
         <Menu.Item>
           <Input icon='search' placeholder='Search...' />
         </Menu.Item>
-        <Link to="/createArticle"><Menu.Item>
-        Create Article
-        </Menu.Item></Link>
-        <Menu.Item  active={activeItem === 'logout'} onClick={this.handleItemClick} >
-        {this.props.loginReducer.status == values.NOTLOGIN ? 'Login' : 'Logout' }
+        <Menu.Item  name='logOut' active={activeItem === 'logout'} onClick={this.handleItemClick} >
+        Logout
         </Menu.Item>:
         <Menu.Item name='profile' active={activeItem === 'profile'} onClick={this.toggleProfileMenu} />
       </Menu.Menu>
@@ -80,7 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logOutUser : () => dispatch(logOutAction())
+    logOut : () => dispatch(logOutAction())
   }
 }
 
