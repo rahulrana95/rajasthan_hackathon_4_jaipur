@@ -47,6 +47,14 @@ class TopMenu extends Component {
       >
         Places Guides
       </Menu.Item>
+      <Menu.Item
+        name='trendingPlaces'
+        active={activeItem === 'trendingPlaces'}
+        onClick={this.handleItemClick}
+      >
+        <Link to="/trendingPlaces">Trending Places  </Link>
+      </Menu.Item>
+
       <Menu.Menu position='right'>
         <Menu.Item>
           <Input icon='search' placeholder='Search...' />

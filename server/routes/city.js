@@ -1,12 +1,17 @@
 import express from 'express';
 const router = express.Router();
-const login = router.post('/login',function(request,response){
+const dummy = router.post('/city',function(request,response){
 	let data = request.body.data;
 	const db = request.app.locals.settings.db;
-	const user = db.collection('user');
-	let username = data.username;
-	let password = data.password;
-	user.find({username:username,password:password}).toArray((error,result)=>{
+	const city = db.collection('city');
+
+  for (let i=0;i<data.length;i++){
+    data[i]['updatedAt']= new Date();
+    data[i]['temp']=0;
+    data[i]['views']=0;
+  }
+
+	city.insert(data,(error,result)=>{
 		if(error){
 			response.json({
 				status:404,
@@ -21,4 +26,4 @@ const login = router.post('/login',function(request,response){
 	});
 	});
 
-module.exports = login;
+module.exports = dummy;
