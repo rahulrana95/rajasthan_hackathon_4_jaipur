@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'semantic-ui-react';
+import {connect} from 'react-redux';
+import loginAction from './loginAction';
 import './index.css';
 
 class Login extends React.Component {
@@ -31,6 +33,20 @@ class Login extends React.Component {
         });
       }
 
+      loginUser = () => {
+        let obj = {
+        username:this.state.username,
+        password:this.state.password
+      };
+          if(obj.username.length > 6 && obj.password.length > 6 ){
+            this.props.loginUser(obj);
+        }
+      }
+
+      loginUserDispatch = (dispatch) => {
+
+      }
+
   render(){
 
     return (
@@ -45,11 +61,27 @@ class Login extends React.Component {
       <label>Password</label>
       <Input onChange={this.setPassword} type='password' placeholder="Password here" />
     </Form.Field>
-    <Button type='submit'>Login</Button>
+    <Button type='submit' onClick={this.loginUser}>Login</Button>
     <span>Already have a account? <span onClick={this.props.toggle}><a>SignUp Here</a></span></span><br/> <span onClick={this.reset}> Reset</span>
   </Form>
       </div>
     );
   }
 }
-export default Login;
+
+const mapStateToProps = (state) => {
+  return {
+    loginReducer : state.loginReducer
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser : (data) => dispatch(loginAction(data))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

@@ -3,7 +3,7 @@ export default function logOutAction (){
   return (dispatch) => {
 
       dispatch({
-        type: values.LOGOUTUSER,
+        type: values.LOGOUT,
         payload:[]
       })
   }
