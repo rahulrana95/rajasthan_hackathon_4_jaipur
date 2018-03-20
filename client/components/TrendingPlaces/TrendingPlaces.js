@@ -9,7 +9,7 @@ import './index.css';
 class TrendingPlaces extends React.Component {
 
   componentDidMount(){
-    this.props.getCityInfo();
+    { this.props.getCityInfoData.status.CITYINFO == values.CITYINFO ? null : this.props.getCityInfo();}
   }
 
   showCityData  = () => {
@@ -24,17 +24,12 @@ class TrendingPlaces extends React.Component {
     return (
       <div >
         <div className="filterBar">
-        <Button animated>
-            <Button.Content visible>Trending</Button.Content>
-            <Button.Content hidden>
-              <Icon name='right arrow' />
-            </Button.Content>
-        </Button>
+        <Button onClick={()=>{this.props.getCityInfo()}}>Trending</Button>
         <Button.Group>
-         <Button>Snowy</Button>
-         <Button>Rainy</Button>
-         <Button>Cold</Button>
-         <Button>Warm</Button>
+         <Button onClick={()=>{this.props.getCityInfo('snowy')}}>Snowy</Button>
+         <Button onClick={()=>{this.props.getCityInfo('cold')}}>Cold</Button>
+         <Button onClick={()=>{this.props.getCityInfo('soothing')}}>Soothing</Button>
+         <Button onClick={()=>{this.props.getCityInfo('hot')}}>Hot</Button>
        </Button.Group>
         </div>
         <div className="cityPlaces">
@@ -54,7 +49,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCityInfo : () => dispatch(getCityInfoAction())
+    getCityInfo : (filter) => dispatch(getCityInfoAction(filter))
   }
 }
 

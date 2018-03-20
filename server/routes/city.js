@@ -7,7 +7,6 @@ const dummy = router.post('/city',function(request,response){
 
   for (let i=0;i<data.length;i++){
     data[i]['updatedAt']= new Date();
-    data[i]['temp']=0;
     data[i]['views']=0;
   }
 

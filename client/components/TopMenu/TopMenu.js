@@ -45,7 +45,7 @@ class TopMenu extends Component {
         active={activeItem === 'placesAudioGuides'}
         onClick={this.handleItemClick}
       >
-        Places Guides
+      <Link to="/cityGuide">  Places Guides </Link>
       </Menu.Item>
       <Menu.Item
         name='trendingPlaces'

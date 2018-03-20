@@ -6,6 +6,14 @@ import values from '../../values.js';
 
 class CityTemplate extends React.Component {
 
+  beautifyName = (city) => {
+
+
+    let news = city.charAt(0).toUpperCase() + city.substr(1);
+    return news;
+    
+  }
+
   showCard = () => {
     let data = this.props.city;
     let url = `/trendingPlaces/${data['_id']}`
@@ -13,11 +21,12 @@ class CityTemplate extends React.Component {
     <Image src={data.imgurl} />
     <Card.Content>
       <Card.Header>
-        <Link to={url}>{data.city}</Link>
+        <Link to={url}>{this.beautifyName(data.city)}</Link>
       </Card.Header>
       <Card.Meta>
         <span className='date'>
-          Last Temprature {(new Date(data.updatedAt)).getSeconds()}
+        Temprature {data.temp.temp}&#176;C<br/>
+          Last Temprature {(new Date(data.updatedAt)).getSeconds()} Seconds Ago
         </span>
       </Card.Meta>
       <Card.Description>
