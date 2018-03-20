@@ -5,6 +5,7 @@ import mongodb from 'mongodb';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
+var ObjectId = require('mongodb').ObjectID;
 import webpackConfigDev from '../webpack.config.dev.js';
 import webpackConfigProd from '../webpack.config.prod.js';
 import route from './routes/index.js';
@@ -34,6 +35,7 @@ if(process.env.mode == 'PROD') {
 MongoClient.connect(config.mongodb.host+':'+config.mongodb.port, function (err, database) {
      if(err) throw err;
      const mydb = database.db('hack');
+		 app.set('ObjectId',ObjectId);
     app.set('db',mydb);
 });
 

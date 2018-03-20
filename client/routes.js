@@ -5,6 +5,7 @@ import { Router, Route, browserHistory,IndexRoute } from 'react-router';
 import App from './components/App';
 import TrendingPlaces from './components/TrendingPlaces/TrendingPlaces';
 import CityProfile from './components/TrendingPlaces/CityProfile';
+import CityGuide from './components/CityGuide/CityGuide';
 
 import { createStore, combineReducers } from 'redux';
 
@@ -15,6 +16,7 @@ let RouterConfig = () =>
       <Route path="/trendingPlaces" component={TrendingPlaces}>
       </Route>
       <Route path="/trendingPlaces/:id" component={CityProfile}></Route>
+        <Route path="/cityGuide" component={CityGuide}></Route>
     </Route>
   </Router>
 </Provider>

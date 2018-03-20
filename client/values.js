@@ -4,7 +4,8 @@ const values = {
   "SIGNUP":'signup',
   "ALREADYLOGIN":'alreadyLogin',
   "NA":"na",
-  "CITYINFO":"cityinfo"
+  "CITYINFO":"cityinfo",
+  "SINGLECITYINFO":"singleCityInfo"
 };
 
 export default values;
